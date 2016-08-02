@@ -5,5 +5,4 @@ class User
     @name = name
   end
 
-
 end

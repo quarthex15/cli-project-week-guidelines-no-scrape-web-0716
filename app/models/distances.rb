@@ -1,16 +1,12 @@
 require 'pry'
 class Distances
 
-  attr_reader :user, :subways_with_distances, :sorted_hashes
+  attr_reader :user, :sorted_hashes
 
   def initialize(user)
-    #user.location will = coordinates
     @user = user
     @sorted_hashes = sort_by_distance(gather_distances)
   end
-
-  # user.location => coordinates of user as an array of 2 elements
-  # @subway_data => array of subway objects, each of which includes coordinates
 
   def calculate_distance(loc1, loc2)
     rad_per_deg = Math::PI/180  # PI / 180
@@ -30,8 +26,8 @@ class Distances
   end
 
   def gather_distances
-    @subway_data = SubwayStation.all
-    @subway_data.collect do |subway|
+    subway_data = SubwayStation.all
+    subway_data.collect do |subway|
       distance = calculate_distance(subway.coordinates, self.user.coordinates)
       {station: subway, distance: distance}
     end
