@@ -6,9 +6,7 @@ class Distances
   def initialize(user)
     #user.location will = coordinates
     @user = user
-    @subways_with_distances = gather_distances
-    @sorted_hashes = sort_by_distance(@subways_with_distances)
-    binding.pry
+    @sorted_hashes = sort_by_distance(gather_distances)
   end
 
   # user.location => coordinates of user as an array of 2 elements
@@ -45,12 +43,4 @@ class Distances
     end
   end
 
-end
-
-class User
-  attr_accessor :coordinates
-
-  def initialize
-    @coordinates = [-73.9752089996586,40.680699332136946]
-  end
 end
