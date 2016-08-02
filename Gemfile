@@ -3,6 +3,7 @@ source "https://rubygems.org"
 group "development" do
   gem "pry"
   gem "pry-nav"
+  gem "geocoder"
   # gem "rest-client"
   # gem "json"
 end
@@ -14,8 +15,4 @@ end
 group "parsing" do
   gem "rest-client"
   gem "json"
-end
-
-group "location service" do
-  gem "geocoder"
 end
