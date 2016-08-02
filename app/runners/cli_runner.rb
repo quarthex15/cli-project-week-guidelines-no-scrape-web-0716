@@ -52,11 +52,11 @@ class SubwayCLI
       new_distances.sorted_hashes[0...5].each do |distance_hash|
         puts "#{distance_hash[:station].name}: #{distance_hash[:distance].to_i}m"
       end
+      binding.pry
     else
       puts "Enter a valid New York address/ move to New York"
     end
   end
-
 
 end
 

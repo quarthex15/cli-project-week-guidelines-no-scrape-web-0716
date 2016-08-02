@@ -4,6 +4,7 @@ group "development" do
   gem "pry"
   gem "pry-nav"
   gem "geocoder"
+  gem "colorize"
   # gem "rest-client"
   # gem "json"
 end
