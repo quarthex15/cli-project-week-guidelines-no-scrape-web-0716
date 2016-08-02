@@ -33,36 +33,27 @@ class SubwayCLI
   end
 
   def search(input)
-    # if /-?\d{2}\.\d{5}\d*, -?\d{2}\.\d{5}\d*/ =~ input
-    #   coordinates = input.split(", ")
-
-    #   new_user.coordinates = coordinates.collect {|coordinate| coordinate.to_f}
-    #   puts "Your coordinates are #{new_user.coordinates[0]}, #{new_user.coordinates[1]}, I am searching for the closest subway stations..."
-
-    #   new_distances = Distances.new(self.new_user)
-
-    #   new_distances.sorted_hashes[0...5].each do |distance_hash|
-    #     puts "#{distance_hash[:station].name}: #{distance_hash[:distance].to_i}m"
-    #   end
-    # else
-    #   puts "Please enter valid coordinates (XX.XXXXXX, YY.YYYYYY)"
-    # end
-
-    # 
-    # 
 
     geocoder_search = Geocoder.search(input)
     lat = (geocoder_search[0].data["geometry"]["viewport"]["northeast"]["lat"] + geocoder_search[0].data["geometry"]["viewport"]["southwest"]["lat"])/2
     lng = (geocoder_search[0].data["geometry"]["viewport"]["northeast"]["lng"] + geocoder_search[0].data["geometry"]["viewport"]["southwest"]["lng"])/2
 
-    new_user.coordinates = [lng, lat]
+    city = geocoder_search[0].data["address_components"][3]["long_name"]
 
-    puts "Your coordinates are #{new_user.coordinates[0]}, #{new_user.coordinates[1]}, I am searching for the closest subway stations..."
+    acceptable_cities = ["New York", "Brooklyn", "Queens", "Bronx"]
 
-    new_distances = Distances.new(self.new_user)
+    if acceptable_cities.include?(city)
+      new_user.coordinates = [lng, lat]
 
-    new_distances.sorted_hashes[0...5].each do |distance_hash|
-      puts "#{distance_hash[:station].name}: #{distance_hash[:distance].to_i}m"
+      puts "Your coordinates are #{new_user.coordinates[0]}, #{new_user.coordinates[1]}, I am searching for the closest subway stations..."
+
+      new_distances = Distances.new(self.new_user)
+
+      new_distances.sorted_hashes[0...5].each do |distance_hash|
+        puts "#{distance_hash[:station].name}: #{distance_hash[:distance].to_i}m"
+      end
+    else
+      puts "Enter a valid New York address/ move to New York"
     end
   end
 
