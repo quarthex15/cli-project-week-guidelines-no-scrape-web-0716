@@ -40,7 +40,7 @@ class SubwayCLI
 
     city = geocoder_search[0].data["address_components"][3]["long_name"]
 
-    acceptable_cities = ["New York", "Brooklyn", "Queens", "Bronx"]
+    acceptable_cities = ["New York", "Brooklyn", "Queens", "Bronx", "Manhattan"]
 
     if acceptable_cities.include?(city)
       new_user.coordinates = [lng, lat]
@@ -52,7 +52,7 @@ class SubwayCLI
       new_distances.sorted_hashes[0...5].each do |distance_hash|
         puts "#{distance_hash[:station].name}: #{distance_hash[:distance].to_i}m"
       end
-      binding.pry
+      #binding.pry
     else
       puts "Enter a valid New York address/ move to New York"
     end

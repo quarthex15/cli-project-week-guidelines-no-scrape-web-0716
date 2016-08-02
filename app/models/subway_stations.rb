@@ -8,7 +8,7 @@ class SubwayStation
     @line = line
     @coordinates = coordinates
     @@all << self
-    binding.pry
+    #binding.pry
   end
 
   def self.all
