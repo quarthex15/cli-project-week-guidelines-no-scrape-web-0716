@@ -50,9 +50,8 @@ class SubwayCLI
       new_distances = Distances.new(self.new_user)
 
       new_distances.sorted_hashes[0...5].each do |distance_hash|
-        puts "#{distance_hash[:station].name}: #{distance_hash[:distance].to_i}m"
+        puts "#{distance_hash[:station].name}: #{distance_hash[:distance].to_i}m (lines: #{distance_hash[:station].line})"
       end
-      #binding.pry
     else
       puts "Enter a valid New York address/ move to New York"
     end
