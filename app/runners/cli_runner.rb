@@ -34,7 +34,7 @@ class SubwayCLI
 
   def search(input)
 
-    geocoder_search = Geocoder.search(input)
+    geocoder_search = Geocoder.search("#{input}, New York")
     lat = (geocoder_search[0].data["geometry"]["viewport"]["northeast"]["lat"] + geocoder_search[0].data["geometry"]["viewport"]["southwest"]["lat"])/2
     lng = (geocoder_search[0].data["geometry"]["viewport"]["northeast"]["lng"] + geocoder_search[0].data["geometry"]["viewport"]["southwest"]["lng"])/2
 
